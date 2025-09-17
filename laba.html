@@ -78,7 +78,6 @@
       margin-top: 20px;
       font-weight: bold;
       font-size: 1.1rem;
-      text-shadow: 0 0 8px #ff0000;
     }
 
     h1 {
@@ -93,28 +92,24 @@
 <body>
   <form id="answerForm">
     <h1>Lab Access Console</h1>
-    <label for="input1">First Input:</label>
+    <label for="input1">Input:</label>
     <input type="text" id="input1" required>
-
-    <label for="input2">Second Input:</label>
-    <input type="text" id="input2" required>
 
     <button type="submit">Initiate Check</button>
     <p id="result"></p>
   </form>
 
   <script>
-    function checkAnswer(val1, val2) {
-      return val1.toLowerCase() === "hello" && val2.toLowerCase() === "world";
+    function checkAnswer(val1) {
+      return val1.toLowerCase() === "113";
     }
 
     document.getElementById('answerForm').addEventListener('submit', function(event) {
       event.preventDefault();
       const input1 = document.getElementById('input1').value.trim();
-      const input2 = document.getElementById('input2').value.trim();
       const result = document.getElementById('result');
 
-      if (checkAnswer(input1, input2)) {
+      if (checkAnswer(input1)) {
         result.textContent = "✅ Access Granted — Welcome, Researcher.";
         result.style.color = "#00ffae";
       } else {
