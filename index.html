@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 30px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 300px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Check Your Answer</h1>
+  <form id="answerForm">
+    <label for="input1">First Input:</label>
+    <input type="text" id="input1" required>
+
+    <label for="input2">Second Input:</label>
+    <input type="text" id="input2" required>
+
+    <button type="submit">Check</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    // Answer checker function
+    function checkAnswer(val1, val2) {
+      // Example logic: first input must be "hello", second input must be "world"
+      return val1.toLowerCase() === "hello" && val2.toLowerCase() === "world";
+    }
+
+    // Form handler
+    document.getElementById('answerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent page reload
+
+      const input1 = document.getElementById('input1').value.trim();
+      const input2 = document.getElementById('input2').value.trim();
+      const result = document.getElementById('result');
+
+      if (checkAnswer(input1, input2)) {
+        result.textContent = "✅ Correct!";
+        result.style.color = "green";
+      } else {
+        result.textContent = "❌ Incorrect. Try again!";
+        result.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
