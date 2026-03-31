@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Chem Lab</title>
@@ -89,8 +90,9 @@
     }
   </style>
 </head>
+
 <body>
-  <form id="answerForm">
+  <form id="answerForm" autocomplete="off">
     <h1>Lab Access Console</h1>
     <label for="input1">Input:</label>
     <input type="text" id="input1" required>
@@ -100,23 +102,33 @@
   </form>
 
   <script>
-    function checkAnswer(val1) {
-      return val1.toLowerCase() === "113";
+    const urlParams = new URLSearchParams(window.location.search)
+    const group = urlParams.get('group')
+
+    const ANSWERS = {
+      alpha: "113",
+      beta: "88",
+      gamm: "88"
     }
 
-    document.getElementById('answerForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const input1 = document.getElementById('input1').value.trim();
-      const result = document.getElementById('result');
+    function checkAnswer(val1) {
+      return val1.toLowerCase() === ANSWERS[group]
+    }
+
+    document.getElementById('answerForm').addEventListener('submit', function (event) {
+      event.preventDefault()
+      const input1 = document.getElementById('input1').value.trim()
+      const result = document.getElementById('result')
 
       if (checkAnswer(input1)) {
-        result.textContent = "✅ Access Granted — Welcome, Researcher.";
-        result.style.color = "#00ffae";
+        result.textContent = "✅ Access Granted — Welcome, Researcher."
+        result.style.color = "#00ffae"
       } else {
-        result.textContent = "❌ Access Denied — Incorrect Sequence.";
-        result.style.color = "#ff4d4d";
+        result.textContent = "❌ Access Denied — Incorrect Sequence."
+        result.style.color = "#ff4d4d"
       }
     });
   </script>
 </body>
+
 </html>
