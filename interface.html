@@ -88,6 +88,14 @@
       font-size: 1.4rem;
       margin-bottom: 10px;
     }
+
+    #group-links {
+      color: red;
+
+      a {
+        color: red;
+      }
+    }
   </style>
 </head>
 
@@ -99,6 +107,12 @@
 
     <button type="submit">Initiate Check</button>
     <p id="result"></p>
+    <div id="group-links">
+      <p>Unknown group. Which group are you in?</p>
+      <a href="?group=alpha">Alpha</a>
+      <a href="?group=beta">Beta</a>
+      <a href="?group=gamma">Gamma</a>
+    </div>
   </form>
 
   <script>
@@ -108,7 +122,22 @@
     const ANSWERS = {
       alpha: "113",
       beta: "88",
-      gamm: "88"
+      gamma: "88"
+    }
+
+    function toTitleCase(str) {
+      return str.replace(
+        /\w\S*/g,
+        text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+      )
+    }
+
+    if (ANSWERS[group] === undefined) {
+      document.title = "Unknown group"
+      document.getElementById('Unknown group ID. Your URL is probably malformed. ')
+    } else {
+      document.title = `Group ${toTitleCase(group)}`
+      document.getElementById("group-links").style.display = 'none'
     }
 
     function checkAnswer(val1) {
